@@ -27,3 +27,8 @@ Once you're confident that you understand the basics, adapt the *Sign-Tap6.conf.
 You can view these instructions at any time by running script without parameters.
 
 .. _tap-windows6: https://github.com/OpenVPN/tap-windows6
+
+License
+=======
+
+This project uses the BSD license. See the LICENSE file for details.
