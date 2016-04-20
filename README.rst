@@ -24,11 +24,13 @@ Once you're confident that you understand the basics, adapt the *Sign-Tap6.conf.
     Example 3: Append a signature to a signed driver
         Sign-Tap6.ps1 -SourceDir tap6 -Append
 
-You can view these instructions at any time by running script without parameters.
+You can view these instructions at any time by running script without parameters. Note that according to Microsoft documentation Inf2Cat, which this script uses to create the (unsigned) catalog files, needs to be run with administrator privileges. I have not verified if this is still the case.
 
-.. _tap-windows6: https://github.com/OpenVPN/tap-windows6
+This script is pretty good at validating its environment and bailing out if things have been misconfigured. It will not take any action on already signed files, unless the -Force parameter is given. It also won't append signatures unless -Append is defined.
 
 License
 =======
 
 This project uses the BSD license. See the LICENSE file for details.
+
+.. _tap-windows6: https://github.com/OpenVPN/tap-windows6
