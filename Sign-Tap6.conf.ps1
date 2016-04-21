@@ -1,5 +1,5 @@
 # Adapt this file to match your system
-﻿$ddk_bin = "C:\Program Files (x86)\Windows Kits\10\bin\x86"
+$ddk_bin = "C:\Program Files (x86)\Windows Kits\10\bin\x86"
 $inf2cat = "C:\Program Files (x86)\Windows Kits\10\bin\x86\inf2cat.exe"
 $signtool = "C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe"
 
