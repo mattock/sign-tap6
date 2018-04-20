@@ -26,6 +26,13 @@ Once you're confident that you understand the basics, adapt the *Sign-Tap6.conf.
 
 You can view these instructions at any time by running script without parameters. Note that according to Microsoft documentation Inf2Cat, which this script uses to create the (unsigned) catalog files, needs to be run with administrator privileges. I have not verified if this is still the case.
 
+**IMPORTANT:** If you're not appending a signature you **must** use the -Force 
+flag. Otherwise the file hashes in the security catalog (.cat) file will not 
+match the driver files, which prevents driver installation even though the 
+digital signature of the catalog file is valid. The -Force flag removes the 
+security catalogs and recreates them, which ensures that they're in sync with 
+the actual driver files.
+
 This script is pretty good at validating its environment and bailing out if things have been misconfigured. It will not take any action on already signed files, unless the -Force parameter is given. It also won't append signatures unless -Append is defined.
 
 License
