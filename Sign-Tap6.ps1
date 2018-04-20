@@ -39,6 +39,20 @@ if (! ($SourceDir -and $crosscert)) {
     Exit 1
 }
 
+if ( !($Append) -and !($Force)) {
+    Write-Host "ERROR: You must use -Force when not using -Append!"
+    Write-Host
+    Show-Usage
+    Exit 1
+}
+
+if ( $Append -and $Force) {
+    Write-Host "ERROR: Using -Append and -Force are mutually exclusive parameters!"
+    Write-Host
+    Show-Usage
+    Exit 1
+}
+
 # Inf2Cat.exe requires a fully-qualified path
 $x86_driver_dir = Resolve-Path "${SourceDir}\i386"
 $x64_driver_dir = Resolve-Path "${SourceDir}\amd64"
