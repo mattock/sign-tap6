@@ -35,6 +35,17 @@ the actual driver files.
 
 This script is pretty good at validating its environment and bailing out if things have been misconfigured. It will not take any action on already signed files, unless the -Force parameter is given. It also won't append signatures unless -Append is defined.
 
+Verifying signatures
+====================
+
+It is recommended to do basic sanity checking on the signatures right after 
+they've been created:
+
+    signtool.exe verify /v /kp /c <drivername>.cat <drivername>.sys
+
+If this test passes it is fairly likely that various Windows versions will 
+actually let the driver to be installed.
+
 License
 =======
 
