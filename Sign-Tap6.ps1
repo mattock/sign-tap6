@@ -56,15 +56,20 @@ if ( $Append -and $Force) {
 # Inf2Cat.exe requires a fully-qualified path
 $x86_driver_dir = Resolve-Path "${SourceDir}\i386"
 $x64_driver_dir = Resolve-Path "${SourceDir}\amd64"
+$arm64_driver_dir = Resolve-Path "${SourceDir}\arm64"
 $inf_x86 = "${x86_driver_dir}/OemVista.inf"
 $inf_x64 = "${x64_driver_dir}/OemVista.inf"
+$inf_arm64 = "${arm64_driver_dir}/OemVista.inf"
 # The next two result in a string such as "tap0901"
 $x86_driver_basename = (Get-ChildItem $x86_driver_dir -Filter "*.sys").BaseName
 $x64_driver_basename = (Get-ChildItem $x64_driver_dir -Filter "*.sys").BaseName
+$arm64_driver_basename = (Get-ChildItem $arm64_driver_dir -Filter "*.sys").BaseName
 $cat_x86 = "${x86_driver_dir}\${x86_driver_basename}.cat"
 $cat_x64 = "${x64_driver_dir}\${x64_driver_basename}.cat"
+$cat_arm64 = "${arm64_driver_dir}\${arm64_driver_basename}.cat"
 $devcon_x86 = (Get-ChildItem $x86_driver_dir -Filter "*.exe").FullName
 $devcon_x64 = (Get-ChildItem $x64_driver_dir -Filter "*.exe").FullName
+$devcon_arm64 = (Get-ChildItem $arm64_driver_dir -Filter "*.exe").FullName
 $sourcedir_basename = (Get-Item $SourceDir).Basename
 $sourcedir_parent = (Get-Item $SourceDir).Parent.FullName
 # Tarball not implemented yet
@@ -106,7 +111,7 @@ if (Test-Path $cat_x64) {
 }
 
 # Sign the catalogs
-foreach ($file in $cat_x86,$cat_x64,$devcon_x86,$devcon_x64) {
+foreach ($file in $cat_x86,$cat_x64,$cat_arm64,$devcon_x86,$devcon_x64,$devcon_arm64) {
     $not_signed = ((Get-AuthenticodeSignature $file).Status -eq "NotSigned")
     # signtool.exe counterintuitively rejects the /tp 0, claiming that the index is invalid;
     # hence we only define /tp if we're adding a second signature.
